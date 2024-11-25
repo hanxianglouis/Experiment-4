@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "istream": "cpp",
+        "iostream": "cpp",
+        "queue": "cpp"
+    }
+}
