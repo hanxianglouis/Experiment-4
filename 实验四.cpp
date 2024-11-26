@@ -147,6 +147,16 @@ class tree2 {
                 table.push_back(new_node);
             }
             file.close();
+            int n=table.size();
+            for(int i=0;i<n;i++){//冒泡排序
+                for(int j=0;j<n-i-1;j++){
+                    if(table[j]->expenditures>table[j+1]->expenditures){
+                        node2* temp=table[j];
+                        table[j]=table[j+1];
+                        table[j+1]=temp;
+                    }
+                }
+            }
             head=table[0];
             for(int i=0;i<table.size();i++){
                 if((2*i+1)<table.size()){
