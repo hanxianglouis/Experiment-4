@@ -438,27 +438,25 @@ void send(){
     vector<codepoint> codebook;
     tree.gene_codebook(tree.gethead(),codebook);
     string codes=encode(words,codebook);
-    fstream file("code.txt",ios::out);
-    file<<codes;
-    fstream file2("codebook.txt",ios::out);
-    file2<<"ch,code"<<endl;
+    fstream file("message.txt",ios::out);
+    file<<"code:"<<endl;
+    file<<codes<<endl;
+    file<<"ch,code"<<endl;
     for(int i=0;i<codebook.size();i++){
-        file2<<codebook[i].ch<<','<<codebook[i].code<<endl;
+        file<<codebook[i].ch<<','<<codebook[i].code<<endl;
         pq.pop();
     }
     file.close();
-    file2.close();
 }
 
 void receive(){
-    fstream file("code.txt",ios::in);
+    fstream file("message.txt",ios::in);
     string code;
     getline(file,code);
-    file.close();
-    fstream file2("codebook.txt",ios::in);
-    huffmantree tree(file2);
-    file2.close();
+    getline(file,code);
+    huffmantree tree(file);
     tree.decode(code);
+    file.close();
     return;
 }
 
@@ -519,7 +517,7 @@ int main(){
             break;
         case 5:
             send();
-            cout<<"The information has been saved in \"codebook.txt\" and \"code.txt\"."<<endl;
+            cout<<"The information has been saved in \"message.txt\"."<<endl;
             getchar();
             system("clear");
             break;
